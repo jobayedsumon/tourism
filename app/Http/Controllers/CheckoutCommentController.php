@@ -23,7 +23,7 @@ class CheckoutCommentController extends Controller
 
         $point_a = DB::raw("ST_GEOMFROMTEXT('POINT($hotel_lon $hotel_lat)')");
         $point_b = DB::raw("ST_GEOMFROMTEXT('POINT($my_lon $my_lat)')");
-        $distance = DB::select("select st_distance_sphere($point_a , $point_b)/1000 as distance")[0];
+        $distance = DB::select("select st_distance($point_a , $point_b)/1000 as distance")[0];
         if($distance->distance > 2){
             return  Redirect::back()->withErrors(['distance' => 'You are not near the hotel']);
         }

@@ -88,8 +88,11 @@
 <script>
     let latitude = {{$tourist->latitude}};
     let longitude = {{$tourist->longitude}};
+    let hotels = {!! $nearByHotels !!};
 
-    var map = L.map('map').setView([latitude,longitude ], 13);
+
+
+    var map = L.map('map').setView([latitude,longitude], 13);
     setInterval(function () {
         return map.invalidateSize();
     }, 100);
@@ -101,27 +104,36 @@
             maxZoom: 18,
         }).addTo(map);
 
-    let request = $.ajax({
-        url:  `https://barikoi.xyz/v1/api/search/nearby/category/MTY5NjpVTFNVWEJNTVNP/1/20?longitude=${longitude}&latitude=${latitude}&ptype=hotel`,
-        method: "GET",
-        dataType: "html"
-    });
+    // let request = $.ajax({
+    //     url:  `https://barikoi.xyz/v1/api/search/nearby/category/MTY5NjpVTFNVWEJNTVNP/1/20?longitude=${longitude}&latitude=${latitude}&ptype=hotel`,
+    //     method: "GET",
+    //     dataType: "html"
+    // });
+    //
+    // request.done(function( msg ) {
+    //     let response  = JSON.parse(msg);
+    //     var planes = mapDataForPoint(response.Place);
+    //     for (var i = 0; i < planes.length; i++) {
+    //         marker = new L.marker([planes[i][1],planes[i][2]])
+    //             .bindPopup(planes[i][0])
+    //             .addTo(map);
+    //     }
+    // });
 
-    request.done(function( msg ) {
-        let response  = JSON.parse(msg);
-        var planes = mapDataForPoint(response.Place);
+    var planes = mapDataForPoint(hotels);
+    console.log(planes)
         for (var i = 0; i < planes.length; i++) {
             marker = new L.marker([planes[i][1],planes[i][2]])
                 .bindPopup(planes[i][0])
                 .addTo(map);
         }
-    });
 
 
     function mapDataForPoint(msg) {
         let length  = msg.length;
         let container = [];
         for (let i = 0; i<length; i++){
+            console.log(msg[i])
             container.push([msg[i].name,msg[i].latitude,msg[i].longitude]);
         }
        return container;
