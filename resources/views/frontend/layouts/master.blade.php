@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Tour BD</title>
+    <title>Trusted Tourism</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" href="{{asset('frontend/images/favicon.png')}}" type="image/x-icon">

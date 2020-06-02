@@ -9,7 +9,7 @@
             <div class="header-search hidden-lg">
                 <a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a>
             </div>
-            <a href="/" class="navbar-brand"><span><i class="fa fa-plane"></i>Tour</span> BD</a>
+            <a href="/" class="navbar-brand"><span><i class="fa fa-plane"></i>Trusted</span> Tourism</a>
         </div><!-- end navbar-header -->
 
         <div class="collapse navbar-collapse" id="myNavbar1">
