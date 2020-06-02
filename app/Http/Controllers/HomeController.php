@@ -215,7 +215,7 @@ class HomeController extends Controller
         $avg_rating = $data['avg_rating'];
         $review_statistics = $data['review_statistics'];
         $user_review_info = $data['user_review_info'];
-        $nearByHotels = json_encode(Hotel::where('tourist_area','LIKE',"%$tourist->touristspot%")->get()->toArray());
+        $nearByHotels = json_encode(Hotel::where('tourist_area','LIKE',"%$tourist->touristspot%")->orwhere('tourist_area','LIKE',"%$tourist->location%")->get()->toArray());
         return view('frontend.tourist.search_details',compact('tourist','avg_rating','review_statistics','user_review_info','nearByHotels'));
     }
 
